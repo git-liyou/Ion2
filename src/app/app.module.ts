@@ -2,9 +2,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
+import { NewsPage } from '../pages/news/news';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { MoviePage } from '../pages/movie/movie';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
@@ -12,9 +12,9 @@ import { Page2 } from '../pages/page2/page2';
   declarations: [
     MyApp,
     TabsPage,
-    HomePage,
+    NewsPage,
     AboutPage,
-    ContactPage,
+    MoviePage,
     Page1,
     Page2
   ],
@@ -25,9 +25,9 @@ import { Page2 } from '../pages/page2/page2';
   entryComponents: [
     MyApp,
     TabsPage,
-    HomePage,
+    NewsPage,
     AboutPage,
-    ContactPage,
+    MoviePage,
     Page1,
     Page2
   ],

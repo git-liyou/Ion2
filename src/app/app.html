@@ -1,17 +1,17 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+    <ion-content>
+        <div class="dis-t menu-header">
+            <div class="dis-tc c-w">
+                <img class="menu-user-photo" src="assets/image/user.jpg">
+                <h2>dPary</h2>
+            </div>
+        </div>
+        <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-    </ion-list>
-  </ion-content>
+        </ion-list>
+    </ion-content>
 
 </ion-menu>
 

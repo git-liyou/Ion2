@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>{{category}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div *ngIf="!dataFinish" class="loading">
+        <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <!--<div *ngIf="dataFinish">-->
+    <ion-refresher (ionRefresh)="getData($event)">
+        <ion-refresher-content pullingText="刷新中..."></ion-refresher-content>
+    </ion-refresher>
+    <ion-grid>
+        <ion-row wrap>
+            <ion-col *ngFor="let movie of movieList" width-50>
+                <ion-card class="no-shadow">
+                    <img [src]="movie.images.large" />
+                    <ion-card-content>
+                        <ion-card-title>{{movie.title}}</ion-card-title>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll *ngIf="hasmore" (ionInfinite)="getData($event)">
+        <ion-infinite-scroll-content loadingText="加载中..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!--</div>-->
+</ion-content>

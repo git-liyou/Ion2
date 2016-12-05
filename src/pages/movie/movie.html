@@ -10,11 +10,28 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-list-header>Follow us on Twitter</ion-list-header>
-        <ion-item>
-            <ion-icon name="ionic" item-left (click)="pushPage()"></ion-icon>
-            @ionicframework
-        </ion-item>
-    </ion-list>
+    <div *ngIf="!dataFinish" class="loading">
+        <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <div *ngIf="dataFinish">
+        <div *ngFor="let category of movieData">
+            <button ion-item (click)="pushPage(category.title)">{{category.title}}</button>
+            <ion-grid>
+                <ion-scroll scrollX="true">
+                    <ion-row>
+                        <ion-col *ngFor="let movie of category.content" width-50>
+                            <ion-card class="no-shadow">
+                                <img [src]="movie.images.large" />
+                                <ion-card-content>
+                                    <ion-card-title>{{movie.title}}</ion-card-title>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-scroll>
+            </ion-grid>
+
+        </div>
+    </div>
+
 </ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>电影信息</ion-title>
+    </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <div *ngIf="!movieInfo" class="loading">
+        <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <div *ngIf="movieInfo">
+        <h2>{{movieInfo.title}}</h2>
+        <ion-chip color="primary" *ngFor="let genre of movieInfo.genres">
+            <ion-label>{{genre}}</ion-label>
+        </ion-chip>
+        <p class="text-reader">
+            {{movieInfo.summary}}
+        </p>
+    </div>
+
+
+</ion-content>

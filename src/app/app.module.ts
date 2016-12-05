@@ -6,10 +6,12 @@ import { NewsPage } from '../pages/news/news';
 import { AboutPage } from '../pages/about/about';
 import { MoviePage } from '../pages/movie/movie';
 import { MovieCategoryPage } from '../pages/movie-category/movie-category';
+import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
 import { Data } from '../providers/data';
+import { ImageLoader } from '../components/image-loader/image-loader';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,10 @@ import { Data } from '../providers/data';
     AboutPage,
     MoviePage,
     MovieCategoryPage,
+    MovieDetailPage,
     Page1,
-    Page2
+    Page2,
+    ImageLoader
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -40,6 +44,7 @@ import { Data } from '../providers/data';
     AboutPage,
     MoviePage,
     MovieCategoryPage,
+    MovieDetailPage,
     Page1,
     Page2
   ],

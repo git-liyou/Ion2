@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { Data } from '../../providers/data';
-import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-movie-category',
@@ -24,6 +24,9 @@ export class MovieCategoryPage {
   }
   ionViewWillLeave() {
     this.menuCtrl.swipeEnable(true);
+  }
+  pushDetail(id) {
+    this.navCtrl.push(MovieDetailPage, { id: id })
   }
   getData(event) {
     if (event && event.ionRefresh) this.start = 0, this.movieList = [];

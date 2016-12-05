@@ -11,9 +11,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Data {
   topData: Array<any>;
-  movieData:Array<any>;
+  movieData: Array<any>;
   constructor(public http: Http) {
-    
+
   }
 
   getAll() {
@@ -25,7 +25,7 @@ export class Data {
         this.getTopData(0, 5).then(res => {
           this.movieData.push({ title: 'Top250', content: res });
           this.getInTheaters(0, 5).then(res => {
-            this.movieData.push ({ title: '正在热映', content: res });
+            this.movieData.push({ title: '正在热映', content: res });
             this.getComingSoon(0, 5).then(res => {
               this.movieData.push({ title: '即将上映', content: res });
               resolve(this.movieData);
@@ -58,6 +58,14 @@ export class Data {
     return new Promise(resolve => {
       this.http.get('https://api.douban.com/v2/movie/coming_soon?start=' + start + '&count=' + count).subscribe(res => {
         this.topData = res.json().subjects;
+        resolve(this.topData);
+      });
+    })
+  }
+  getMovieDetail(id) {
+    return new Promise(resolve => {
+      this.http.get('https://api.douban.com/v2/movie/subject/' + id).subscribe(res => {
+        this.topData = res.json();
         resolve(this.topData);
       });
     })

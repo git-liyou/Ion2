@@ -20,7 +20,7 @@
                 <ion-scroll scrollX="true">
                     <ion-row>
                         <ion-col *ngFor="let movie of category.content" width-50>
-                            <ion-card class="no-shadow">
+                            <ion-card (click)="pushDetail(movie.id)">
                                 <img [src]="movie.images.large" />
                                 <ion-card-content>
                                     <ion-card-title>{{movie.title}}</ion-card-title>

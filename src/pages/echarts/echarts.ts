@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 
 declare var echarts;
 @Component({
@@ -7,7 +7,12 @@ declare var echarts;
   templateUrl: 'echarts.html'
 })
 export class EchartsPage {
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController) {
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave() {
+    this.menuCtrl.swipeEnable(true);
+  }
 
   ionViewDidLoad() {
     let myChart = echarts.init(document.getElementById('main'));

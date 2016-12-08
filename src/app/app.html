@@ -6,11 +6,11 @@
                 <h2>dPary</h2>
             </div>
         </div>
-        <ion-list>
-            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+        <!--<ion-list>-->
+        <button menuClose ion-item icon-left *ngFor="let p of pages" (click)="openPage(p)">
+                <ion-icon [name]="p.icon" color="primary" item-left></ion-icon>{{p.title}}
       </button>
-        </ion-list>
+        <!--</ion-list>-->
     </ion-content>
 
 </ion-menu>

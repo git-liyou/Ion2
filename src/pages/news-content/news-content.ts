@@ -1,37 +1,35 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { Data } from '../../providers/data';
-
-declare var YCQQ,Wechat;
-
+declare var YCQQ, Wechat;
 @Component({
-  selector: 'page-movie-detail',
-  templateUrl: 'movie-detail.html'
+  selector: 'page-news-content',
+  templateUrl: 'news-content.html'
 })
-export class MovieDetailPage {
+export class NewsContentPage {
   id: String;
-  movieInfo: any;
+  content: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data, public menuCtrl: MenuController) {
     this.id = this.navParams.get('id');
     this.menuCtrl.swipeEnable(false);
   }
-
-  ionViewDidLoad() {
-    this.data.getMovieDetail(this.id).then(res => {
-      this.movieInfo = res;
-    })
-  }
   ionViewWillLeave() {
     this.menuCtrl.swipeEnable(true);
   }
-  shareMovie(type, movie) {
+
+  ionViewDidLoad() {
+    this.data.getZhihuContent(this.id).then(res => {
+      this.content = res;
+    })
+  }
+  shareContent(type, content) {
     switch (type) {
       case 'QQ':
         let QQ = {
-          url: movie.share_url,
-          title: movie.title,
-          description: movie.summary,
-          imageUrl: movie.images.large,
+          url: content.share_url,
+          title: content.title,
+          description: "来自Ion2--基于Ionic2的资讯类APP",
+          imageUrl: content.images[0],
           appName: "Ion2"
         };
         YCQQ.shareToQQ(function () {
@@ -42,10 +40,10 @@ export class MovieDetailPage {
         break;
       case 'Qzone':
         let Qzone = {
-          url: movie.share_url,
-          title: movie.title,
-          description: movie.summary,
-          imageUrl: [movie.images.large],
+          url: content.share_url,
+          title: content.title,
+          description: "来自Ion2--基于Ionic2的资讯类APP",
+          imageUrl: content.images,
           appName: "Ion2"
         };
         YCQQ.shareToQzone(function () {
@@ -57,15 +55,15 @@ export class MovieDetailPage {
       case 'weixin':
         Wechat.share({
           message: {
-            title: movie.title,
-            description: movie.summary,
-            thumb: movie.images.large,
+            title: content.title,
+            description: "来自Ion2--基于Ionic2的资讯类APP",
+            thumb: content.images[0],
             mediaTagName: "TEST-TAG-001",
             messageExt: "这是第三方带的测试字段",
             messageAction: "<action>dotalist</action>",
             media: {
               type: Wechat.Type.WEBPAGE,
-              webpageUrl: movie.share_url
+              webpageUrl: content.share_url
             }
           },
           scene: Wechat.Scene.TIMELINE   // share to Timeline

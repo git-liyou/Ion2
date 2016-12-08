@@ -1,1 +1,21 @@
-page-news {}
+.ios,
+.md {
+    page-news {
+        .zhihu-header {
+            background-image: url(assets/image/menu-header-back.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 35vh;
+        }
+        .zhihu-header h2 {
+            position: absolute;
+            margin: 0;
+            bottom: 0;
+            font-weight: bold;
+            text-align: start;
+            color: #FFF;
+            background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+            padding: 0 10px;
+        }
+    }
+}

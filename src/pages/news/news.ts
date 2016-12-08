@@ -1,22 +1,45 @@
-import { Component } from '@angular/core';
-
-import { NavController,ToastController } from 'ionic-angular';
+import { Component, Pipe } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { NavController } from 'ionic-angular';
+import { NewsContentPage } from '../news-content/news-content'
+import { Data } from '../../providers/data';
 
 @Component({
   selector: 'page-news',
   templateUrl: 'news.html'
 })
 export class NewsPage {
-
-  constructor(public navCtrl: NavController,public toastCtrl: ToastController) {
+  zhihuList: any;
+  dataFinish: boolean = false;
+  date: Date = new Date();
+  mySlideOptions = {
+    autoplay: 2000,
+    pager: true,
+    loop: true
+  };
+  constructor(public navCtrl: NavController, public data: Data) {
 
   }
-  showToast(){
-                    let toast = this.toastCtrl.create({
-                            message: 'User was added successfully',
-                            duration: 2000,
-                            position: 'top'
-                          });
-                 toast.present();
+  ionViewDidLoad() {
+    this.data.getZhihuLatest().then(res => {
+      this.zhihuList = res;
+      this.dataFinish = true;
+    })
+  }
+  getMoreZhihuList(event) {
+    let year = this.date.getFullYear();
+    let month = (this.date.getMonth() + 1).toString();
+    let day = this.date.getDate().toString();
+    if (day.length < 2) day = '0' + day;
+    if (month.length < 2) month = '0' + month;
+
+    this.data.getZhihuBefore('' + year + month + day).then((res) => {
+      this.zhihuList.stories = this.zhihuList.stories.concat(res);
+      this.date = new Date(this.date.getTime() - 1 * 24 * 60 * 60 * 1000)
+      event.complete();
+    })
+  }
+  pushContent(id) {
+    this.navCtrl.push(NewsContentPage, { id: id });
   }
 }

@@ -5,11 +5,14 @@
     </ion-navbar>
 
 </ion-header>
-<ion-content padding>
-    <div *ngIf="!movieInfo" class="loading">
+<ion-content *ngIf="!movieInfo">
+    <div class="loading">
         <ion-spinner name="bubbles"></ion-spinner>
     </div>
-    <div *ngIf="movieInfo">
+</ion-content>
+<ion-content *ngIf="movieInfo" elastic-header>
+    <div class="background-image" [ngStyle]="{'background-image':'url(' + movieInfo.images.large + ')'}"></div>
+    <div class="main-content">
         <h2>{{movieInfo.title}}</h2>
         <ion-chip color="primary" *ngFor="let genre of movieInfo.genres">
             <ion-label>{{genre}}</ion-label>
@@ -18,6 +21,13 @@
             {{movieInfo.summary}}
         </p>
     </div>
-
-
+    <ion-fab right bottom>
+        <button ion-fab color="primary" mini><ion-icon name="ios-send"></ion-icon></button>
+        <ion-fab-list side="top">
+            <!--<button ion-fab><i color="primary" class="iconfont icon-friends"></i></button>-->
+            <button ion-fab (click)="shareMovie('weixin',movieInfo)"><i color="primary" class="iconfont icon-weixin"></i></button>
+            <button ion-fab (click)="shareMovie('Qzone',movieInfo)"><i color="primary" class="iconfont icon-Qzone"></i></button>
+            <button ion-fab (click)="shareMovie('QQ',movieInfo)"><i color="primary" class="iconfont icon-QQ"></i></button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>

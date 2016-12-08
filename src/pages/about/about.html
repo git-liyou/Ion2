@@ -9,6 +9,26 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <div class="qrHolder" style="text-align:center;">
+        <img src="assets/image/qrcode.jpg" style="width:45%;margin-top:1.6rem">
+        <h3>微信公众号：Ionic2</h3>
+    </div>
+    <div style="width:100%;height:5px;background-color:#e8e8e8"></div>
+    <!--<ion-list>-->
+    <button ion-item icon-left (click)="saveQr()">
+      <ion-icon name="md-crop" color="primary" item-left></ion-icon>
+      保存二维码
+    </button>
+    <a ion-item icon-left href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=57770491&card_type=group&source=qrcode">
+        <ion-icon name="md-person-add" color="primary" item-left></ion-icon>
+        加入QQ群
+    </a>
+    <!--</ion-list>-->
+    <div style="text-align:center;position:absolute;bottom:10px;width:100%">
+        <div style="position:relative;">
+            <p class="line-text">© dPAry</p>
+        </div>
+    </div>
 
 </ion-content>

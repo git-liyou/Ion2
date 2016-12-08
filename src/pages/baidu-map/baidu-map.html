@@ -1,0 +1,14 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>百度地图</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-fab left bottom>
+        <button ion-fab (click)='getLocation()'><ion-icon name="md-locate"></ion-icon></button>
+    </ion-fab>
+    <div id="Bmap" style="width: 100%;height: 100%"></div>
+</ion-content>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { NavController,Content } from 'ionic-angular';
 import { MovieCategoryPage } from '../movie-category/movie-category';
 import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { Page1 } from '../page1/page1';
@@ -9,6 +9,7 @@ import { Data } from '../../providers/data';
   templateUrl: 'movie.html'
 })
 export class MoviePage {
+  @ViewChild(Content) content: Content;
   movieData: any;
   dataFinish: boolean = false;
   constructor(public navCtrl: NavController, public data: Data) {
@@ -20,7 +21,7 @@ export class MoviePage {
   pushDetail(id) {
     this.navCtrl.push(MovieDetailPage, { id: id })
   }
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.data.getAll().then(res => {
       this.movieData = res;
       this.dataFinish = true;

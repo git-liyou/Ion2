@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class Data {
   topData: Array<any>;
   movieData: Array<any>;
+  data: any;
   constructor(public http: Http) {
 
   }
@@ -71,4 +72,28 @@ export class Data {
     })
   }
 
+  getZhihuLatest() {
+    return new Promise(resolve => {
+      this.http.get('http://news-at.zhihu.com/api/4/news/latest').subscribe(res => {
+        this.data = res.json();
+        resolve(this.data);
+      });
+    })
+  }
+  getZhihuBefore(date) {
+    return new Promise(resolve => {
+      this.http.get('http://news-at.zhihu.com/api/4/news/before/'+ date).subscribe(res => {
+        this.data = res.json().stories;
+        resolve(this.data);
+      });
+    })
+  }
+  getZhihuContent(id) {
+    return new Promise(resolve => {
+      this.http.get('http://news-at.zhihu.com/api/4/news/'+ id).subscribe(res => {
+        this.data = res.json();
+        resolve(this.data);
+      });
+    })
+  }
 }

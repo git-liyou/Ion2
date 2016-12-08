@@ -1,0 +1,31 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>文章详情</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content *ngIf="!content">
+    <div class="loading">
+        <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+</ion-content>
+<ion-content *ngIf="content" elastic-header>
+    <div class="background-image" [ngStyle]="{'background-image':'url(' + content.image + ')'}">
+        <div class="background-content">
+            <h2>{{content.title}}</h2>
+            <p>{{content.image_source}}</p>
+        </div>
+    </div>
+    <div class="zhihu-content" [innerHtml]="content.body"></div>
+    <ion-fab right bottom>
+        <button ion-fab color="primary" mini><ion-icon name="ios-send"></ion-icon></button>
+        <ion-fab-list side="top">
+            <!--<button ion-fab><i color="primary" class="iconfont icon-friends"></i></button>-->
+            <button ion-fab (click)="shareContent('weixin',content)"><i color="primary" class="iconfont icon-weixin"></i></button>
+            <button ion-fab (click)="shareContent('Qzone',content)"><i color="primary" class="iconfont icon-Qzone"></i></button>
+            <button ion-fab (click)="shareContent('QQ',content)"><i color="primary" class="iconfont icon-QQ"></i></button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

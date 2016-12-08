@@ -5,4 +5,15 @@
             margin: 2px;
         }
     }
+    .background-image {
+        background-image: url(../../assets/image/menu-header-back.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 45vh;
+    }
+    .main-content {
+        padding: 20px;
+        background-color: #F4F4F4;
+        position: absolute;
+    }
 }

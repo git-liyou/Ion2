@@ -2,6 +2,7 @@
 .md {
     page-news-content {
         .background-image {
+            position: relative;
             background-image: url(../../assets/image/menu-header-back.jpg);
             background-size: cover;
             background-position: center;
@@ -9,12 +10,13 @@
         }
         .background-content {
             position: absolute;
+            width: 100%;
             bottom: 0;
             color: #FFF;
             background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))
         }
         .background-content h2 {
-            margin: 5px 0 0 0;
+            margin: 5px 5px 0 5px;
         }
         .background-content p {
             margin: 2px;

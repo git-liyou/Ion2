@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ToastController } from 'ionic-angular';
 import { Data } from '../../providers/data';
 declare var YCQQ, Wechat;
 @Component({
@@ -9,7 +9,8 @@ declare var YCQQ, Wechat;
 export class NewsContentPage {
   id: String;
   content: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data,
+    public menuCtrl: MenuController, public toastCtrl: ToastController) {
     this.id = this.navParams.get('id');
     this.menuCtrl.swipeEnable(false);
   }
@@ -23,6 +24,7 @@ export class NewsContentPage {
     })
   }
   shareContent(type, content) {
+    let that = this;
     switch (type) {
       case 'QQ':
         let QQ = {
@@ -33,9 +35,9 @@ export class NewsContentPage {
           appName: "Ion2"
         };
         YCQQ.shareToQQ(function () {
-          alert("share success");
+          that.showToast('分享成功');
         }, function (failReason) {
-          alert(failReason);
+          that.showToast('分享失败');
         }, QQ);
         break;
       case 'Qzone':
@@ -47,9 +49,9 @@ export class NewsContentPage {
           appName: "Ion2"
         };
         YCQQ.shareToQzone(function () {
-          alert("share success");
+          that.showToast('分享成功');
         }, function (failReason) {
-          alert(failReason);
+          that.showToast('分享失败');
         }, Qzone);
         break;
       case 'weixin':
@@ -75,5 +77,11 @@ export class NewsContentPage {
         break;
     }
   }
-
+  showToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
 }

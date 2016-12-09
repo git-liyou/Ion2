@@ -1,5 +1,4 @@
-import { Component, Pipe } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NewsContentPage } from '../news-content/news-content'
 import { Data } from '../../providers/data';

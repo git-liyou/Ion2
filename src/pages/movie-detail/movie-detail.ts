@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController,ToastController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ToastController } from 'ionic-angular';
 import { Data } from '../../providers/data';
 
 declare var YCQQ, Wechat;
@@ -11,8 +11,8 @@ declare var YCQQ, Wechat;
 export class MovieDetailPage {
   id: String;
   movieInfo: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data, 
-  public menuCtrl: MenuController,public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data,
+    public menuCtrl: MenuController, public toastCtrl: ToastController) {
     this.id = this.navParams.get('id');
     this.menuCtrl.swipeEnable(false);
   }
@@ -32,7 +32,7 @@ export class MovieDetailPage {
         let QQ = {
           url: movie.share_url,
           title: movie.title,
-          description: movie.summary,
+          description: "来自Ion2--基于Ionic2的资讯类APP",
           imageUrl: movie.images.large,
           appName: "Ion2"
         };
@@ -46,7 +46,7 @@ export class MovieDetailPage {
         let Qzone = {
           url: movie.share_url,
           title: movie.title,
-          description: movie.summary,
+          description: "来自Ion2--基于Ionic2的资讯类APP",
           imageUrl: [movie.images.large],
           appName: "Ion2"
         };
@@ -60,21 +60,42 @@ export class MovieDetailPage {
         Wechat.share({
           message: {
             title: movie.title,
-            description: movie.summary,
+            description: "来自Ion2--基于Ionic2的资讯类APP",
             thumb: movie.images.large,
             mediaTagName: "TEST-TAG-001",
-            messageExt: "这是第三方带的测试字段",
+            messageExt: "来自Ion2--基于Ionic2的资讯类APP",
             messageAction: "<action>dotalist</action>",
             media: {
               type: Wechat.Type.WEBPAGE,
               webpageUrl: movie.share_url
             }
           },
-          scene: Wechat.Scene.TIMELINE   // share to Timeline
+          scene: Wechat.Scene.SESSION
         }, function () {
-          alert("Success");
-        }, function (reason) {
-          alert("Failed: " + reason);
+          that.showToast('分享成功');
+        }, function (failReason) {
+          that.showToast('分享失败');
+        });
+        break;
+      case 'friends':
+        Wechat.share({
+          message: {
+            title: movie.title,
+            description: "来自Ion2--基于Ionic2的资讯类APP",
+            thumb: movie.images.large,
+            mediaTagName: "TEST-TAG-001",
+            messageExt: "来自Ion2--基于Ionic2的资讯类APP",
+            messageAction: "<action>dotalist</action>",
+            media: {
+              type: Wechat.Type.WEBPAGE,
+              webpageUrl: movie.share_url
+            }
+          },
+          scene: Wechat.Scene.TIMELINE
+        }, function () {
+          that.showToast('分享成功');
+        }, function (failReason) {
+          that.showToast('分享失败');
         });
         break;
     }

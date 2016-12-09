@@ -61,18 +61,39 @@ export class NewsContentPage {
             description: "来自Ion2--基于Ionic2的资讯类APP",
             thumb: content.images[0],
             mediaTagName: "TEST-TAG-001",
-            messageExt: "这是第三方带的测试字段",
+            messageExt: "来自Ion2--基于Ionic2的资讯类APP",
             messageAction: "<action>dotalist</action>",
             media: {
               type: Wechat.Type.WEBPAGE,
               webpageUrl: content.share_url
             }
           },
-          scene: Wechat.Scene.TIMELINE   // share to Timeline
+          scene: Wechat.Scene.SESSION
         }, function () {
-          alert("Success");
-        }, function (reason) {
-          alert("Failed: " + reason);
+          that.showToast('分享成功');
+        }, function (failReason) {
+          that.showToast('分享失败');
+        });
+        break;
+      case 'friends':
+        Wechat.share({
+          message: {
+            title: content.title,
+            description: "来自Ion2--基于Ionic2的资讯类APP",
+            thumb: content.images[0],
+            mediaTagName: "TEST-TAG-001",
+            messageExt: "来自Ion2--基于Ionic2的资讯类APP",
+            messageAction: "<action>dotalist</action>",
+            media: {
+              type: Wechat.Type.WEBPAGE,
+              webpageUrl: content.share_url
+            }
+          },
+          scene: Wechat.Scene.TIMELINE
+        }, function () {
+          that.showToast('分享成功');
+        }, function (failReason) {
+          that.showToast('分享失败');
         });
         break;
     }

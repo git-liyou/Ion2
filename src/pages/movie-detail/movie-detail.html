@@ -24,7 +24,7 @@
     <ion-fab right bottom>
         <button ion-fab color="primary" mini><ion-icon name="ios-send"></ion-icon></button>
         <ion-fab-list side="top">
-            <!--<button ion-fab><i color="primary" class="iconfont icon-friends"></i></button>-->
+            <button ion-fab (click)="shareMovie('friends',movieInfo)"><i color="primary" class="iconfont icon-friends"></i></button>
             <button ion-fab (click)="shareMovie('weixin',movieInfo)"><i color="primary" class="iconfont icon-weixin"></i></button>
             <button ion-fab (click)="shareMovie('Qzone',movieInfo)"><i color="primary" class="iconfont icon-Qzone"></i></button>
             <button ion-fab (click)="shareMovie('QQ',movieInfo)"><i color="primary" class="iconfont icon-QQ"></i></button>

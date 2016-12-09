@@ -22,7 +22,7 @@
     <ion-fab right bottom>
         <button ion-fab color="primary" mini><ion-icon name="ios-send"></ion-icon></button>
         <ion-fab-list side="top">
-            <!--<button ion-fab><i color="primary" class="iconfont icon-friends"></i></button>-->
+            <button ion-fab (click)="shareContent('friends',content)"><i color="primary" class="iconfont icon-friends"></i></button>
             <button ion-fab (click)="shareContent('weixin',content)"><i color="primary" class="iconfont icon-weixin"></i></button>
             <button ion-fab (click)="shareContent('Qzone',content)"><i color="primary" class="iconfont icon-Qzone"></i></button>
             <button ion-fab (click)="shareContent('QQ',content)"><i color="primary" class="iconfont icon-QQ"></i></button>

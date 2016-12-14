@@ -14,6 +14,7 @@ export class MovieCategoryPage {
   count = 10;
   dataFinish: boolean = false;
   hasmore: boolean = false;
+  hasErr: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data, public menuCtrl: MenuController) {
     this.category = this.navParams.get('categories');
     this.menuCtrl.swipeEnable(false);
@@ -30,7 +31,8 @@ export class MovieCategoryPage {
   }
   getData(event) {
     if (event && event.ionRefresh) this.start = 0, this.movieList = [];
-
+    this.hasErr = null;
+    this.dataFinish = false;
     switch (this.category) {
       case 'Top250':
         this.data.getTopData(this.start, this.count).then((res: Array<any>) => {
@@ -41,7 +43,8 @@ export class MovieCategoryPage {
           if (event) {
             event.complete();
           }
-
+        }, err => {
+          this.hasErr = err;
         })
         break;
       case '正在热映':
@@ -53,6 +56,8 @@ export class MovieCategoryPage {
           if (event) {
             event.complete();
           }
+        }, err => {
+          this.hasErr = err;
         })
         break;
       case '即将上映':
@@ -64,6 +69,8 @@ export class MovieCategoryPage {
           if (event) {
             event.complete();
           }
+        }, err => {
+          this.hasErr = err;
         })
         break;
     }

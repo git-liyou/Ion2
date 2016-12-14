@@ -9,6 +9,7 @@ declare var YCQQ, Wechat;
 export class NewsContentPage {
   id: String;
   content: any;
+  hasErr: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data,
     public menuCtrl: MenuController, public toastCtrl: ToastController) {
     this.id = this.navParams.get('id');
@@ -19,8 +20,14 @@ export class NewsContentPage {
   }
 
   ionViewDidLoad() {
+    this.initData();
+  }
+  initData() {
+    this.hasErr = null;
     this.data.getZhihuContent(this.id).then(res => {
       this.content = res;
+    }, err => {
+      this.hasErr = err;
     })
   }
   shareContent(type, content) {

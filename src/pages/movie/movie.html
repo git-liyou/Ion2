@@ -10,28 +10,34 @@
 </ion-header>
 
 <ion-content>
-    <div *ngIf="!dataFinish" class="loading">
-        <ion-spinner name="bubbles"></ion-spinner>
-    </div>
-    <div *ngIf="dataFinish">
-        <div *ngFor="let category of movieData">
-            <button ion-item (click)="pushPage(category.title)">{{category.title}}</button>
-            <ion-grid>
-                <ion-scroll scrollX="true">
-                    <ion-row>
-                        <ion-col *ngFor="let movie of category.content" width-50>
-                            <ion-card (click)="pushDetail(movie.id)">
-                                <img [src]="movie.images.large" />
-                                <ion-card-content>
-                                    <ion-card-title>{{movie.title}}</ion-card-title>
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                    </ion-row>
-                </ion-scroll>
-            </ion-grid>
+    <div *ngIf="!hasErr">
+        <div *ngIf="!dataFinish" class="loading">
+            <ion-spinner name="bubbles"></ion-spinner>
+        </div>
+        <div *ngIf="dataFinish">
+            <div *ngFor="let category of movieData">
+                <button ion-item (click)="pushPage(category.title)">{{category.title}}</button>
+                <ion-grid>
+                    <ion-scroll scrollX="true">
+                        <ion-row>
+                            <ion-col *ngFor="let movie of category.content" width-50>
+                                <ion-card (click)="pushDetail(movie.id)">
+                                    <img [src]="movie.images.large" />
+                                    <ion-card-content>
+                                        <ion-card-title>{{movie.title}}</ion-card-title>
+                                    </ion-card-content>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-scroll>
+                </ion-grid>
 
+            </div>
         </div>
     </div>
-
+    <div *ngIf="hasErr">
+        <div class="loading" (click)="initData()">
+            <img src="assets/image/404.png" style="width:50%">
+        </div>
+    </div>
 </ion-content>

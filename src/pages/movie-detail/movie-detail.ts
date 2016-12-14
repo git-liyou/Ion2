@@ -11,6 +11,7 @@ declare var YCQQ, Wechat;
 export class MovieDetailPage {
   id: String;
   movieInfo: any;
+  hasErr: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public data: Data,
     public menuCtrl: MenuController, public toastCtrl: ToastController) {
     this.id = this.navParams.get('id');
@@ -18,12 +19,18 @@ export class MovieDetailPage {
   }
 
   ionViewDidLoad() {
-    this.data.getMovieDetail(this.id).then(res => {
-      this.movieInfo = res;
-    })
+    this.initData();
   }
   ionViewWillLeave() {
     this.menuCtrl.swipeEnable(true);
+  }
+  initData() {
+    this.hasErr = null;
+    this.data.getMovieDetail(this.id).then(res => {
+      this.movieInfo = res;
+    }, err => {
+      this.hasErr = err;
+    })
   }
   shareMovie(type, movie) {
     let that = this;

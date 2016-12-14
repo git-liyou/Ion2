@@ -16,13 +16,23 @@ export class NewsPage {
     pager: true,
     loop: true
   };
+  hasErr: boolean = false;
   constructor(public navCtrl: NavController, public data: Data) {
 
   }
   ionViewDidLoad() {
+    setTimeout(() => {
+      this.initData();
+    }, 1000)
+  }
+  initData() {
+    this.hasErr = false;
+    this.dataFinish = false;
     this.data.getZhihuLatest().then(res => {
       this.zhihuList = res;
       this.dataFinish = true;
+    }, err => {
+      this.hasErr = true;
     })
   }
   getMoreZhihuList(event) {

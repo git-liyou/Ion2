@@ -7,32 +7,37 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <div *ngIf="!dataFinish" class="loading">
-        <ion-spinner name="bubbles"></ion-spinner>
+    <div *ngIf="hasErr">
+        <div class="loading" (click)="initData()">
+            <img src="assets/image/404.png" style="width:50%">
+        </div>
     </div>
-    <div *ngIf="dataFinish">
-        <ion-slides [options]="mySlideOptions">
-            <ion-slide *ngFor="let topic of zhihuList.top_stories" (click)="pushContent(topic.id)">
-                <div class="zhihu-header" [ngStyle]="{'background-image':'url(' + topic.image + ')'}">
-                    <h2>{{topic.title}}</h2>
-                </div>
-                <!--<img [src]="topic.image">
-                <h2>{{topic.title}}</h2>-->
-            </ion-slide>
-        </ion-slides>
-        <ion-list>
-            <ion-card *ngFor="let item of zhihuList.stories">
-                <ion-item text-wrap (click)="pushContent(item.id)">
-                    <ion-thumbnail item-right>
-                        <img [src]="item.images[0]">
-                    </ion-thumbnail>
-                    <h2>{{item.title}}</h2>
-                </ion-item>
-            </ion-card>
+    <div *ngIf="!hasErr">
+        <div *ngIf="!dataFinish" class="loading">
+            <ion-spinner name="bubbles"></ion-spinner>
+        </div>
+        <div *ngIf="dataFinish">
+            <ion-slides [options]="mySlideOptions">
+                <ion-slide *ngFor="let topic of zhihuList.top_stories" (click)="pushContent(topic.id)">
+                    <div class="zhihu-header" [ngStyle]="{'background-image':'url(' + topic.image + ')'}">
+                        <h2>{{topic.title}}</h2>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+            <ion-list>
+                <ion-card *ngFor="let item of zhihuList.stories">
+                    <ion-item text-wrap (click)="pushContent(item.id)">
+                        <ion-thumbnail item-right>
+                            <img [src]="item.images[0]">
+                        </ion-thumbnail>
+                        <h2>{{item.title}}</h2>
+                    </ion-item>
+                </ion-card>
 
-        </ion-list>
-        <ion-infinite-scroll (ionInfinite)="getMoreZhihuList($event)">
-            <ion-infinite-scroll-content loadingText="加载中..."></ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+            </ion-list>
+            <ion-infinite-scroll (ionInfinite)="getMoreZhihuList($event)">
+                <ion-infinite-scroll-content loadingText="加载中..."></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
     </div>
 </ion-content>

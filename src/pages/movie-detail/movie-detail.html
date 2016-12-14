@@ -6,8 +6,13 @@
 
 </ion-header>
 <ion-content *ngIf="!movieInfo">
-    <div class="loading">
+    <div *ngIf="!hasErr" class="loading">
         <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <div *ngIf="hasErr">
+        <div class="loading" (click)="initData()">
+            <img src="assets/image/404.png" style="width:50%">
+        </div>
     </div>
 </ion-content>
 <ion-content *ngIf="movieInfo" elastic-header>

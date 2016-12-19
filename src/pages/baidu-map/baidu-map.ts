@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController,ToastController } from 'ionic-angular';
+import { NavController, MenuController, ToastController } from 'ionic-angular';
 
-declare var BMap, baidu_location;
+declare var BMap, BDLocation;
 @Component({
   selector: 'page-baidu-map',
   templateUrl: 'baidu-map.html'
@@ -13,19 +13,26 @@ export class BaiduMapPage {
   }
   getLocation() {
     let that = this;
-    baidu_location.getCurrentPosition((data) => {
-      if (data.locType == '61' || data.locType == '161') {
-        this.map.centerAndZoom(new BMap.Point(data.lontitude, data.latitude), 15);
-        let pt = new BMap.Point(data.lontitude, data.latitude);
-        let marker2 = new BMap.Marker(pt);
-        this.map.addOverlay(marker2);
-      } else {
+    BDLocation.watch({ gps: true },
+      (suc) => {
+        if (suc.data) {
+          this.map.centerAndZoom(new BMap.Point(suc.data.longitude, suc.data.latitude), 15);
+          let pt = new BMap.Point(suc.data.longitude, suc.data.latitude);
+          let marker2 = new BMap.Marker(pt);
+          this.map.addOverlay(marker2);
+        } else {
+          that.showToast('定位失败，请检查应用权限设置！');
+        }
+        BDLocation.stop(suc => {
+
+        }, err => {
+
+        });
+
+      }, (err) => {
         that.showToast('定位失败，请检查应用权限设置！');
       }
-
-    }, (err) => {
-      that.showToast('定位失败，请检查应用权限设置！');
-    });
+    )
   }
   ionViewDidLoad() {
     this.map = new BMap.Map("Bmap");

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input,ViewChild } from '@angular/core';
+import { Directive, ElementRef,ViewChild } from '@angular/core';
 
 @Directive({
   selector: '[image-loader]'

@@ -17,7 +17,7 @@
             <ion-spinner name="bubbles"></ion-spinner>
         </div>
         <div *ngIf="dataFinish">
-            <ion-slides [options]="mySlideOptions">
+            <ion-slides autoplay="2000" loop="true" pager="true">
                 <ion-slide *ngFor="let topic of zhihuList.top_stories" (click)="pushContent(topic.id)">
                     <div class="zhihu-header" [ngStyle]="{'background-image':'url(' + topic.image + ')'}">
                         <h2>{{topic.title}}</h2>

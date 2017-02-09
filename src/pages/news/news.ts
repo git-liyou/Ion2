@@ -11,11 +11,6 @@ export class NewsPage {
   zhihuList: any;
   dataFinish: boolean = false;
   date: Date = new Date();
-  mySlideOptions = {
-    autoplay: 2000,
-    pager: true,
-    loop: true
-  };
   hasErr: boolean = false;
   constructor(public navCtrl: NavController, public data: Data) {
 
